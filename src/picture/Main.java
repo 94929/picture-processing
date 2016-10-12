@@ -10,6 +10,13 @@ public class Main {
             Picture dst = processor.invert(src);
 
             picture.Utils.savePicture(dst, args[2]);
+        } else if (args[0].equals("grayscale")) {
+            Picture src = picture.Utils.loadPicture(args[1]);
+            Picture dst = processor.grayscale(src);
+
+            picture.Utils.savePicture(dst, args[2]);
+        } else {
+
         }
     }
 }
