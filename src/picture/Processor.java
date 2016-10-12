@@ -72,7 +72,6 @@ public class Processor {
                     dst.setPixel(j, src.getWidth()-offset-i, src.getPixel(i, j));
 
             src = dst;
-
             angle += rightAngle;
         }
 
