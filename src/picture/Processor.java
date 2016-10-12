@@ -12,9 +12,9 @@ public class Processor {
         Picture dst =
                 picture.Utils.createPicture(src.getWidth(), src.getHeight());
 
-        for (int i = 0; i < dst.getHeight(); i++) {
-            for (int j = 0; j < dst.getWidth(); j++) {
-                Color c = src.getPixel(j, i);
+        for (int i = 0; i < src.getWidth(); i++) {
+            for (int j = 0; j < src.getHeight(); j++) {
+                Color c = src.getPixel(i, j);
 
                 int r = c.getRed();
                 int g = c.getGreen();
@@ -24,7 +24,7 @@ public class Processor {
                 c.setGreen(intensity - g);
                 c.setBlue(intensity - b);
 
-                dst.setPixel(j, i, c);
+                dst.setPixel(i, j, c);
             }
         }
 
@@ -35,9 +35,9 @@ public class Processor {
         Picture dst =
                 picture.Utils.createPicture(src.getWidth(), src.getHeight());
 
-        for (int i = 0; i < dst.getHeight(); i++) {
-            for (int j = 0; j < dst.getWidth(); j++) {
-                Color c = src.getPixel(j, i);
+        for (int i = 0; i < src.getWidth(); i++) {
+            for (int j = 0; j < src.getHeight(); j++) {
+                Color c = src.getPixel(i, j);
 
                 int r = c.getRed();
                 int g = c.getGreen();
@@ -49,10 +49,31 @@ public class Processor {
                 c.setGreen(gray);
                 c.setBlue(gray);
 
-                dst.setPixel(j, i, c);
+                dst.setPixel(i, j, c);
             }
         }
 
         return dst;
+    }
+
+    public Picture rotate(Picture src, int angle) {
+        int width = src.getWidth();
+        int height = src.getHeight();
+
+        Color[][] srcArr = new Color[width][height];
+
+        for (int i = 0; i < height; i++)
+            for (int j = 0; j < width; j++)
+                srcArr[j][i] = src.getPixel(j, i);
+
+        Color[][] dstArr = new Color[height][width];
+
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                dstArr[j][i] = new Color(1, 1, 1);
+            }
+        }
+
+        return src;
     }
 }
