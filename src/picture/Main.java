@@ -42,7 +42,6 @@ public class Main {
                 srcs.add(picture.Utils.loadPicture(args[i]));
 
             Picture dst = processor.blend(srcs);
-
             picture.Utils.savePicture(dst, args[args.length - 1]);
         } else if (args[0].equals("blur")) {
 
