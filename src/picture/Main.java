@@ -49,7 +49,16 @@ public class Main {
 
             picture.Utils.savePicture(dst, args[2]);
         } else if (args[0].equals("mosaic")) {
+            int nonInputLength = 2;
+            int inputLength = args.length - nonInputLength;
 
+            List<Picture> srcs = new ArrayList();
+
+            for (int i = 1; i <= inputLength; i++)
+                srcs.add(picture.Utils.loadPicture(args[i]));
+
+            Picture dst = processor.mosaic(srcs);
+            picture.Utils.savePicture(dst, args[args.length - 1]);
         } else {
             System.out.println("The first argument needs to be a command.");
         }

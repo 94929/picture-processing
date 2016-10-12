@@ -200,4 +200,9 @@ public class Processor {
 
         return dst;
     }
+
+    public Picture mosaic(List<Picture> srcs) {
+
+        return srcs.get(0);
+    }
 }
