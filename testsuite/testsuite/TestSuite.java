@@ -41,6 +41,13 @@ public class TestSuite {
   }
 
   @Test
+  public void blendRainbowPatterns() throws IOException {
+    assertEquals(Utils.loadPicture("images/rainbowpatternsblend64x64.png"),
+            runMain(tmpFolder, "blend", "images/rainbow64x64doc.png",
+                    "images/bwpatterns64x64.png"));
+  }
+
+  @Test
   public void blurBWPatterns() throws IOException {
     assertEquals(Utils.loadPicture("images/bwpatternsblur64x64.png"),
         runMain(tmpFolder, "blur", "images/bwpatterns64x64.png"));
