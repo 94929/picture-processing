@@ -9,9 +9,6 @@ public class Processor {
     public Picture invert(Picture src) {
         int intensity = 255;
 
-        Picture dst =
-                picture.Utils.createPicture(src.getWidth(), src.getHeight());
-
         for (int i = 0; i < src.getWidth(); i++) {
             for (int j = 0; j < src.getHeight(); j++) {
                 Color c = src.getPixel(i, j);
@@ -24,17 +21,14 @@ public class Processor {
                 c.setGreen(intensity - g);
                 c.setBlue(intensity - b);
 
-                dst.setPixel(i, j, c);
+                src.setPixel(i, j, c);
             }
         }
 
-        return dst;
+        return src;
     }
 
     public Picture grayscale(Picture src) {
-        Picture dst =
-                picture.Utils.createPicture(src.getWidth(), src.getHeight());
-
         for (int i = 0; i < src.getWidth(); i++) {
             for (int j = 0; j < src.getHeight(); j++) {
                 Color c = src.getPixel(i, j);
@@ -49,11 +43,11 @@ public class Processor {
                 c.setGreen(gray);
                 c.setBlue(gray);
 
-                dst.setPixel(i, j, c);
+                src.setPixel(i, j, c);
             }
         }
 
-        return dst;
+        return src;
     }
 
     public Picture rotate(Picture src, int angle) {
