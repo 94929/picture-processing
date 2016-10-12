@@ -35,17 +35,9 @@ public class Processor {
             for (int j = 0; j < src.getHeight(); j++) {
                 Color c = src.getPixel(i, j);
 
-                int r = c.getRed();
-                int g = c.getGreen();
-                int b = c.getBlue();
+                int gray = (c.getRed() + c.getGreen() + c.getBlue()) / 3;
 
-                int gray = (r+g+b)/3;
-
-                c.setRed(gray);
-                c.setGreen(gray);
-                c.setBlue(gray);
-
-                src.setPixel(i, j, c);
+                src.setPixel(i, j, new Color(gray, gray, gray));
             }
         }
 
@@ -199,10 +191,5 @@ public class Processor {
         }
 
         return dst;
-    }
-
-    public Picture mosaic(List<Picture> srcs) {
-
-        return srcs.get(0);
     }
 }

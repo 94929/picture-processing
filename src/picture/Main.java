@@ -7,60 +7,60 @@ public class Main {
 
     public static void main(String[] args) {
         Processor processor = new Processor();
+        Picture src, dst;
 
-        if (args[0].equals("invert")) {
-            Picture src = picture.Utils.loadPicture(args[1]);
-            Picture dst = processor.invert(src);
+        int lastIndex = args.length - 1;
 
-            picture.Utils.savePicture(dst, args[2]);
-        } else if (args[0].equals("grayscale")) {
-            Picture src = picture.Utils.loadPicture(args[1]);
-            Picture dst = processor.grayscale(src);
+        switch (args[0]) {
+            case "invert":
+                src = picture.Utils.loadPicture(args[1]);
+                dst = processor.invert(src);
 
-            picture.Utils.savePicture(dst, args[2]);
-        } else if (args[0].equals("rotate")) {
-            int angle = Integer.parseInt(args[1]);
+                picture.Utils.savePicture(dst, args[lastIndex]);
+                break;
+            case "grayscale":
+                src = picture.Utils.loadPicture(args[1]);
+                dst = processor.grayscale(src);
 
-            Picture src = picture.Utils.loadPicture(args[2]);
-            Picture dst = processor.rotate(src, angle);
+                picture.Utils.savePicture(dst, args[lastIndex]);
+                break;
+            case "rotate":
+                int angle = Integer.parseInt(args[1]);
 
-            picture.Utils.savePicture(dst, args[3]);
-        } else if (args[0].equals("flip")) {
-            char direction = args[1].charAt(0);
+                src = picture.Utils.loadPicture(args[2]);
+                dst = processor.rotate(src, angle);
 
-            Picture src = picture.Utils.loadPicture(args[2]);
-            Picture dst = processor.flip(src, direction);
+                picture.Utils.savePicture(dst, args[lastIndex]);
+                break;
+            case "flip":
+                char direction = args[1].charAt(0);
 
-            picture.Utils.savePicture(dst, args[3]);
-        } else if (args[0].equals("blend")) {
-            int nonInputLength = 2;
-            int inputLength = args.length - nonInputLength;
+                src = picture.Utils.loadPicture(args[2]);
+                dst = processor.flip(src, direction);
 
-            List<Picture> srcs = new ArrayList();
+                picture.Utils.savePicture(dst, args[lastIndex]);
+                break;
+            case "blend":
+                int nonInputLength = 2;
+                int inputLength = args.length - nonInputLength;
 
-            for (int i = 1; i <= inputLength; i++)
-                srcs.add(picture.Utils.loadPicture(args[i]));
+                List<Picture> srcs = new ArrayList();
 
-            Picture dst = processor.blend(srcs);
-            picture.Utils.savePicture(dst, args[args.length - 1]);
-        } else if (args[0].equals("blur")) {
-            Picture src = picture.Utils.loadPicture(args[1]);
-            Picture dst = processor.blur(src);
+                for (int i = 1; i <= inputLength; i++)
+                    srcs.add(picture.Utils.loadPicture(args[i]));
 
-            picture.Utils.savePicture(dst, args[2]);
-        } else if (args[0].equals("mosaic")) {
-            int nonInputLength = 2;
-            int inputLength = args.length - nonInputLength;
+                dst = processor.blend(srcs);
+                picture.Utils.savePicture(dst, args[lastIndex]);
+                break;
+            case "blur":
+                src = picture.Utils.loadPicture(args[1]);
+                dst = processor.blur(src);
 
-            List<Picture> srcs = new ArrayList();
-
-            for (int i = 1; i <= inputLength; i++)
-                srcs.add(picture.Utils.loadPicture(args[i]));
-
-            Picture dst = processor.mosaic(srcs);
-            picture.Utils.savePicture(dst, args[args.length - 1]);
-        } else {
-            System.out.println("The first argument needs to be a command.");
+                picture.Utils.savePicture(dst, args[lastIndex]);
+                break;
+            default:
+                System.out.println("The first argument needs to be command.");
+                break;
         }
     }
 }
