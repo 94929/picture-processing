@@ -145,16 +145,22 @@ public class Processor {
     }
 
     public Picture blur(Picture src) {
+        int width = src.getWidth();
+        int height = src.getHeight();
+
         Picture dst =
-                picture.Utils.createPicture(src.getWidth(), src.getHeight());
+                picture.Utils.createPicture(width, height);
 
         int offset = 1;
+        int surroundingCells = 9;
 
-        for (int i = 0; i < src.getWidth(); i++) {
-            for (int j = 0; j < src.getHeight(); j++) {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
 
                 /* When new value has to be calculated. */
-                if (i > src.getWidth() + offset && j < src.getHeight() - offset) {
+                if (i > 0 && j > 0 &&
+                        i < width - offset && j < height - offset) {
+
                     Color NW = src.getPixel(i-1,j-1);
                     Color N  = src.getPixel(i-1, j);
                     Color NE = src.getPixel(i-1, j+1);
@@ -169,13 +175,16 @@ public class Processor {
 
                     int newRed   = (NW.getRed()+N.getRed()+NE.getRed()+
                             W.getRed()+C.getRed()+E.getRed()+
-                            SW.getRed()+S.getRed()+SE.getRed())/9;
+                            SW.getRed()+S.getRed()+SE.getRed())
+                            /surroundingCells;
                     int newGreen = (NW.getGreen()+N.getGreen()+NE.getGreen()+
                             W.getGreen()+C.getGreen()+E.getGreen()+
-                            SW.getGreen()+S.getGreen()+SE.getGreen())/9;
+                            SW.getGreen()+S.getGreen()+SE.getGreen())
+                            /surroundingCells;
                     int newBlue  = (NW.getBlue()+N.getBlue()+NE.getBlue()+
                             W.getBlue()+C.getBlue()+E.getBlue()+
-                            SW.getBlue()+S.getBlue()+SE.getBlue())/9;
+                            SW.getBlue()+S.getBlue()+SE.getBlue())
+                            /surroundingCells;
 
                     Color c = new Color(newRed, newGreen, newBlue);
 
@@ -184,8 +193,7 @@ public class Processor {
 
                 /* Otherwise. */
                 else {
-                    Color c = src.getPixel(i, j);
-                    dst.setPixel(i, j, c);
+                    dst.setPixel(i, j, src.getPixel(i, j));
                 }
             }
         }
