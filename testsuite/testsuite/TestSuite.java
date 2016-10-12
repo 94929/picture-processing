@@ -45,5 +45,4 @@ public class TestSuite {
     assertEquals(Utils.loadPicture("images/bwpatternsblur64x64.png"),
         runMain(tmpFolder, "blur", "images/bwpatterns64x64.png"));
   }
-
 }
