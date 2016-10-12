@@ -103,6 +103,45 @@ public class Processor {
     }
 
     public Picture blend(List<Picture> srcs) {
-        return srcs.get(0);
+        int minWidth = Integer.MAX_VALUE;
+        int minHeight = Integer.MAX_VALUE;
+
+        for (int i = 0; i < srcs.size(); i++) {
+            Picture temp = srcs.get(i);
+            if (minWidth > temp.getWidth()) minWidth = temp.getWidth();
+            if (minHeight > temp.getHeight()) minHeight = temp.getHeight();
+        }
+
+        Picture dst = picture.Utils.createPicture(minWidth, minHeight);
+
+        for (int i = 0; i < srcs.size(); i++) {
+            Picture temp = srcs.get(i);
+
+            if (i == 0) {
+                for (int x = 0; x < minWidth; x++) {
+                    for (int y = 0; y < minHeight; y++) {
+                        Color c = temp.getPixel(x, y);
+                        dst.setPixel(x, y, c);
+                    }
+                }
+            } else {
+                for (int x = 0; x < minWidth; x++) {
+                    for (int y = 0; y < minHeight; y++) {
+                        Color dstPixel = dst.getPixel(x, y);
+                        Color tempPixel = temp.getPixel(x, y);
+
+                        int r = (dstPixel.getRed() + tempPixel.getRed())/2;
+                        int g = (dstPixel.getGreen() + tempPixel.getGreen())/2;
+                        int b = (dstPixel.getBlue() + tempPixel.getBlue())/2;
+
+                        Color c = new Color(r, g, b);
+
+                        dst.setPixel(x, y, c);
+                    }
+                }
+            }
+        }
+
+        return dst;
     }
 }
