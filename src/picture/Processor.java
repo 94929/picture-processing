@@ -71,4 +71,20 @@ public class Processor {
 
         return dst;
     }
+
+    public Picture flip(Picture src, char direction) {
+        Picture dst
+                = picture.Utils.createPicture(src.getWidth(), src.getHeight());
+
+        switch (direction) {
+            case 'H': break;
+            case 'V': break;
+
+            default:
+                System.out.println("Direction must be either of 'H' or 'V'.");
+                break;
+        }
+
+        return dst;
+    }
 }
