@@ -1,9 +1,9 @@
 package picture;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
-    private String[] transformations = {
-        "invert", "grayscale", "rotate", "flip", "blend", "blur", "mosaic"
-    };
 
     public static void main(String[] args) {
         Processor processor = new Processor();
@@ -32,6 +32,24 @@ public class Main {
             Picture dst = processor.flip(src, direction);
 
             picture.Utils.savePicture(dst, args[3]);
+        } else if (args[0].equals("blend")) {
+            int nonInputLength = 2;
+            int inputLength = args.length - nonInputLength;
+
+            List<Picture> srcs = new ArrayList();
+
+            for (int i = 1; i <= inputLength; i++)
+                srcs.add(picture.Utils.loadPicture(args[i]));
+
+            Picture dst = processor.blend(srcs);
+
+            picture.Utils.savePicture(dst, args[args.length - 1]);
+        } else if (args[0].equals("blur")) {
+
+        } else if (args[0].equals("mosaic")) {
+
+        } else {
+            System.out.println("The first argument needs to be a command.");
         }
     }
 }

@@ -1,5 +1,7 @@
 package picture;
 
+import java.util.List;
+
 /**
  * Created by jsh3571 on 12/10/2016.
  */
@@ -98,5 +100,9 @@ public class Processor {
         }
 
         return dst;
+    }
+
+    public Picture blend(List<Picture> srcs) {
+        return srcs.get(0);
     }
 }
