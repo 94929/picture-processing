@@ -143,4 +143,53 @@ public class Processor {
         }
         return dst;
     }
+
+    public Picture blur(Picture src) {
+        Picture dst =
+                picture.Utils.createPicture(src.getWidth(), src.getHeight());
+
+        int offset = 1;
+
+        for (int i = 0; i < src.getWidth(); i++) {
+            for (int j = 0; j < src.getHeight(); j++) {
+
+                /* When new value has to be calculated. */
+                if (i > src.getWidth() + offset && j < src.getHeight() - offset) {
+                    Color NW = src.getPixel(i-1,j-1);
+                    Color N  = src.getPixel(i-1, j);
+                    Color NE = src.getPixel(i-1, j+1);
+
+                    Color W  = src.getPixel(i, j-1);
+                    Color C  = src.getPixel(i, j);
+                    Color E  = src.getPixel(i, j+1);
+
+                    Color SW = src.getPixel(i+1, j-1);
+                    Color S  = src.getPixel(i+1, j);
+                    Color SE = src.getPixel(i+1, j+1);
+
+                    int newRed   = (NW.getRed()+N.getRed()+NE.getRed()+
+                            W.getRed()+C.getRed()+E.getRed()+
+                            SW.getRed()+S.getRed()+SE.getRed())/9;
+                    int newGreen = (NW.getGreen()+N.getGreen()+NE.getGreen()+
+                            W.getGreen()+C.getGreen()+E.getGreen()+
+                            SW.getGreen()+S.getGreen()+SE.getGreen())/9;
+                    int newBlue  = (NW.getBlue()+N.getBlue()+NE.getBlue()+
+                            W.getBlue()+C.getBlue()+E.getBlue()+
+                            SW.getBlue()+S.getBlue()+SE.getBlue())/9;
+
+                    Color c = new Color(newRed, newGreen, newBlue);
+
+                    dst.setPixel(i, j, c);
+                }
+
+                /* Otherwise. */
+                else {
+                    Color c = src.getPixel(i, j);
+                    dst.setPixel(i, j, c);
+                }
+            }
+        }
+
+        return dst;
+    }
 }

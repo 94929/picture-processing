@@ -44,7 +44,10 @@ public class Main {
             Picture dst = processor.blend(srcs);
             picture.Utils.savePicture(dst, args[args.length - 1]);
         } else if (args[0].equals("blur")) {
+            Picture src = picture.Utils.loadPicture(args[1]);
+            Picture dst = processor.blur(src);
 
+            picture.Utils.savePicture(dst, args[2]);
         } else if (args[0].equals("mosaic")) {
 
         } else {
