@@ -85,12 +85,12 @@ public class Processor {
             case 'H':
                 for (int i = 0; i < width; i++)
                     for (int j = 0; j < height; j++)
-                        dst.setPixel(i, height - offset - j, src.getPixel(i, j));
+                        dst.setPixel(width - offset - i, j, src.getPixel(i, j));
                 break;
             case 'V':
                 for (int i = 0; i < width; i++)
                     for (int j = 0; j < height; j++)
-                        dst.setPixel(width - offset - i, j, src.getPixel(i, j));
+                        dst.setPixel(i, height - offset - j, src.getPixel(i, j));
                 break;
             default:
                 System.out.println("Direction must be either of 'H' or 'V'.");
