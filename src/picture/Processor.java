@@ -73,13 +73,25 @@ public class Processor {
     }
 
     public Picture flip(Picture src, char direction) {
+        int width = src.getWidth();
+        int height = src.getHeight();
+
+        int offset = 1;
+
         Picture dst
-                = picture.Utils.createPicture(src.getWidth(), src.getHeight());
+                = picture.Utils.createPicture(width, height);
 
         switch (direction) {
-            case 'H': break;
-            case 'V': break;
-
+            case 'H':
+                for (int i = 0; i < width; i++)
+                    for (int j = 0; j < height; j++)
+                        dst.setPixel(i, height - offset - j, src.getPixel(i, j));
+                break;
+            case 'V':
+                for (int i = 0; i < width; i++)
+                    for (int j = 0; j < height; j++)
+                        dst.setPixel(width - offset - i, j, src.getPixel(i, j));
+                break;
             default:
                 System.out.println("Direction must be either of 'H' or 'V'.");
                 break;

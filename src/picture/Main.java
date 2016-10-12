@@ -1,7 +1,7 @@
 package picture;
 
 public class Main {
-    private String[] commands = {
+    private String[] transformations = {
         "invert", "grayscale", "rotate", "flip", "blend", "blur", "mosaic"
     };
 
@@ -29,7 +29,7 @@ public class Main {
             char direction = args[1].charAt(0);
 
             Picture src = picture.Utils.loadPicture(args[2]);
-            Picture dst = processor.rotate(src, direction);
+            Picture dst = processor.flip(src, direction);
 
             picture.Utils.savePicture(dst, args[3]);
         }
