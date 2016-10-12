@@ -57,23 +57,25 @@ public class Processor {
     }
 
     public Picture rotate(Picture src, int angle) {
-        int width = src.getWidth();
-        int height = src.getHeight();
+        int offset = 1;
+        int oneCycle = 360;
+        int rightAngle = 90;
 
-        Color[][] srcArr = new Color[width][height];
+        Picture dst
+                = picture.Utils.createPicture(src.getWidth(), src.getHeight());
 
-        for (int i = 0; i < height; i++)
-            for (int j = 0; j < width; j++)
-                srcArr[j][i] = src.getPixel(j, i);
+        while (angle != oneCycle) {
+            dst = picture.Utils.createPicture(src.getHeight(), src.getWidth());
 
-        Color[][] dstArr = new Color[height][width];
+            for (int i = 0; i < src.getWidth(); i++)
+                for (int j = 0; j < src.getHeight(); j++)
+                    dst.setPixel(j, src.getWidth()-offset-i, src.getPixel(i, j));
 
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                dstArr[j][i] = new Color(1, 1, 1);
-            }
+            src = dst;
+
+            angle += rightAngle;
         }
 
-        return src;
+        return dst;
     }
 }
