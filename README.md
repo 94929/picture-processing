@@ -91,7 +91,7 @@ The format of these commands are:
 
 So, for example, if the args array contained:
 
-{"rotate", "90", "images/green64x64doc.png","/tmp/test.png"}, then your program should rotate images/green64x64doc.png by 90 degrees, and then save the result in /tmp/test.png. 
+* {"rotate", "90", "images/green64x64doc.png","/tmp/test.png"}, then your program should rotate images/green64x64doc.png by 90 degrees, and then save the result in /tmp/test.png.
 
 You are free to alter picture.Main, and add any additional packages or classes you wish under the src directory. picture.Main will need to use the static methods exported by picture.Utils to actually load and save picture.Picture objects.
 
@@ -99,6 +99,51 @@ A suggested design is to create a new class, picture.Process. This will accept t
 
 **Running the Program**
 
+If you are using an IDE such as Eclipse, you can run your program in the usual way from within it. However you might find it easier to run your program from the command line for interactive testing.
+
+Eclipse will automatically compile your code for you, and place the resulting class files in the directory bin (which it will also create for you). If you are in the picture processing directory, you can invoke your program from the command line with the following command:
+
+* % java -ea -cp bin picture.Main**
+
+Here, the -cp bin flag tells Java to look for .class files in the bin directory (**cp** is short for *class path*).
+
+Remember, any extra arguments will be passed to your **args** argument in **main**. So to reproduce the example from earlier, one would invoke:
+
+* % java -ea -cp bin picture.Main rotate 90 images/green64x64doc.png /tmp/test.png
+
+You can also manually compile Main from the command line and put the results in bin with the following command:
+
+* % javac -g -d bin -sourcepath src src/picture/Main.java
+
+However you shouldn’t need to do this if you are working with an IDE.
+
+**Testing**
+
+This term we will be using the *JUnit* library as a standard way to test the Java exercises. In the **testsuite** source directory, a partial test suite suitable for testing your program has been set up.
+
+If you look at testsuite.TestSuite you will see 6 methods that have been annotated by @Test. The @Test is a Java annotation, which you will learn more about later in your Java course. Here, they tell JUnit that the following method represents a test. The assertEquals method is also part of JUnit, which checks that the two arguments it is passed are equal, otherwise it makes the test fail.
+
+We have provided you with a static helper method, runMain, which will execute your Main method with the arguments provided, and then append an extra argument for the output file. However the first argument to runMain must be tmpFolder, which is a special variable used to allow runMain to create a temporary folder (call it /tmp/blah/) in which to store the output image your program should create.
+
+For example, the first test, invertBlack(), calls:
+
+'assertEquals(Utils.loadPicture("images/white64x64.png"), runMain(tmpFolder, "invert", "images/black64x64.png"));'
+  
+This says that the image produced in /tmp/blah/out.png when main is invoked with the arguments invert images/black64x64.png/tmp/blah/out.png should be the same as images/white64x64.png.
+
+On the command-line, you can compile the test suite with:
+
+'javac -g -d bin -cp /usr/share/java/junit4.jar -sourcepath src:testsuite testsuite/testsuite/TestSuite.java'
+
+which instructs javac to place the compiled .class files in the bin directory, to use the JUnit 4 jar file, and to look for source files in both the src and testsuite directories.
+
+And then run it with:
+
+'java -cp /usr/share/java/junit4.jar:bin org.junit.runner.JUnitCore testsuite.TestSuite'
+
+Alternatively, you can compile and run the test-suite very easily, with a more flexible visu- alisation of the errors, using an IDE.
+
+You will notice that this test suite is not complete (for example, it tests flipping vertically (flipVGreen), but not horizontally. You should add extra test cases to the testsuite.TestSuite class to test other combinations. The images directory contains images you can use (the file- names of the images should hint at how they were produced), or you can produce your own.
 
 **Suggested Extensions**
 
