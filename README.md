@@ -76,6 +76,14 @@ The blend transformation takes a list of pictures and combines them together so 
 
 The blur transformation creates a blurred version of the input picture. A blurred-pixel-value is computed by setting its pixel-value to the average value of its surrounding ‘neighbourhood’ of pixels. For example, the average of the neighbourhood:
 
-new value for *e* =  *avgerage* (surrounding ‘neighbourhood’ + *e*) / 9
+new value for *e* =  *avgerage* (surrounding ‘neighbourhood’ + *e*)
 
 Boundary pixels, where a 3x3 neighbourhood is not defined, should not be changed. As with grayscale, you should use integer division when computing the average.
+
+**Suggested Extensions**
+
+**Mosaic**
+
+The mosaic transformation takes a *list* of pictures and combines them together to create a mosaic. The mosaic transform takes a integer parameter, **tile-size**, which specifies the size of a single square mosaic tile. The output picture will have dimensions corresponding to the *smallest* individual width and individual height within the set of specified pictures, *trimmed to be a multiple of the tile-size.*
+
+The tiles in the picture are arranged so that for every tile, the neighbouring tiles to the east and south come from the next picture in the list, (wrapping round as appropriate). The top-left tile comes from the first picture. e.g. Consider making a mosaic of pictures a, b and c (of di↵erent sizes, where *a* is 3 tiles wide by 3 tiles high, *b* is four tiles wide by 3 tiles high, and *c* is four tiles wide by four tiles high):
