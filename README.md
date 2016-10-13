@@ -47,7 +47,7 @@ The class picture.Utils provides a set of static methods to create, load and sav
 
 * public static String toArray(Picture picture) creates a String representation of the colours within the given Picture which may be helpful for debugging purposes.
 
-**Picture Transformations**
+- **Picture Transformations**
 
 You will need to implement the following picture transformations:
 
@@ -79,7 +79,7 @@ new value for *e* =  *avgerage* (surrounding ‘neighbourhood’ + *e*)
 
 Boundary pixels, where a 3x3 neighbourhood is not defined, should not be changed. As with grayscale, you should use integer division when computing the average.
 
-**Suggested Extensions**
+- **Suggested Extensions**
 
 **Mosaic**
 
