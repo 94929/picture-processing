@@ -18,12 +18,12 @@
 
 The class picture.Color provides the following methods for inspecting and setting the colour components of a pixel:
 
-public int getRed()
-public int getGreen()
-public int getBlue()
-public void setRed(int red)
-public void setGreen(int green)
-public void setBlue(int blue)
+* public int getRed()
+* public int getGreen()
+* public int getBlue()
+* public void setRed(int red)
+* public void setGreen(int green)
+* public void setBlue(int blue)
 
 **picture.Picture**
 
