@@ -133,13 +133,13 @@ This says that the image produced in /tmp/blah/out.png when main is invoked with
 
 On the command-line, you can compile the test suite with:
 
-* javac -g -d bin -cp /usr/share/java/junit4.jar -sourcepath src:testsuite testsuite/testsuite/TestSuite.java
+* % javac -g -d bin -cp /usr/share/java/junit4.jar -sourcepath src:testsuite testsuite/testsuite/TestSuite.java
 
 which instructs javac to place the compiled .class files in the bin directory, to use the JUnit 4 jar file, and to look for source files in both the src and testsuite directories.
 
 And then run it with:
 
-* java -cp /usr/share/java/junit4.jar:bin org.junit.runner.JUnitCore testsuite.TestSuite
+* % java -cp /usr/share/java/junit4.jar:bin org.junit.runner.JUnitCore testsuite.TestSuite
 
 Alternatively, you can compile and run the test-suite very easily, with a more flexible visu- alisation of the errors, using an IDE.
 
