@@ -1,5 +1,4 @@
 # PictureProcessing
-To implement several picture transformations, and provide a command line program that allows a user to to transform a specified image, saving the resulting image to a file.
 
 - Aims
   - To practice writing simple programs and designing classes in Java.
@@ -30,11 +29,11 @@ public void setBlue(int blue)
 
 The class picture.Picture defines the following interface for manipulating and querying im- ages:
 
-public int getWidth() returns the width of the picture.
-public int getHeight() returns the height of the picture.
-public Color getPixel(int x, int y) returns the colour of the pixel-value located at (x, y).
-public void setPixel(int x, int y, Color rgb) updates the pixel-value at the lo- cation specified.
-public boolean contains(int x, int y) returns true i↵ the specified point lies within the boundaries of the picture.
+* public int getWidth() returns the width of the picture.
+* public int getHeight() returns the height of the picture.
+* public Color getPixel(int x, int y) returns the colour of the pixel-value located at (x, y).
+* public void setPixel(int x, int y, Color rgb) updates the pixel-value at the lo- cation specified.
+* public boolean contains(int x, int y) returns true i↵ the specified point lies within the boundaries of the picture.
 
 **picture.Utils**
 
@@ -86,4 +85,4 @@ Boundary pixels, where a 3x3 neighbourhood is not defined, should not be changed
 
 The mosaic transformation takes a *list* of pictures and combines them together to create a mosaic. The mosaic transform takes a integer parameter, **tile-size**, which specifies the size of a single square mosaic tile. The output picture will have dimensions corresponding to the *smallest* individual width and individual height within the set of specified pictures, *trimmed to be a multiple of the tile-size.*
 
-The tiles in the picture are arranged so that for every tile, the neighbouring tiles to the east and south come from the next picture in the list, (wrapping round as appropriate). The top-left tile comes from the first picture. e.g. Consider making a mosaic of pictures a, b and c (of di↵erent sizes, where *a* is 3 tiles wide by 3 tiles high, *b* is four tiles wide by 3 tiles high, and *c* is four tiles wide by four tiles high):
+The tiles in the picture are arranged so that for every tile, the neighbouring tiles to the east and south come from the next picture in the list, (wrapping round as appropriate). The top-left tile comes from the first picture. e.g. Consider making a mosaic of pictures a, b and c (of different sizes, where *a* is 3 tiles wide by 3 tiles high, *b* is four tiles wide by 3 tiles high, and *c* is four tiles wide by four tiles high):
