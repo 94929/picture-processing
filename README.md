@@ -81,7 +81,7 @@ Boundary pixels, where a 3x3 neighbourhood is not defined, should not be changed
 
 - **Suggested Extensions**
 
-**Mosaic**
+    - **Mosaic**
 
 The mosaic transformation takes a *list* of pictures and combines them together to create a mosaic. The mosaic transform takes a integer parameter, **tile-size**, which specifies the size of a single square mosaic tile. The output picture will have dimensions corresponding to the *smallest* individual width and individual height within the set of specified pictures, *trimmed to be a multiple of the tile-size.*
 
