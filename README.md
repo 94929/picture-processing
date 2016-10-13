@@ -14,7 +14,7 @@
   - An image can be represented in memory as a bounded two-dimensional array of pixel values. A colour-model is used to translate a pixel-value to colour components. In this lab, pixel-values will be interpreted using the RGB colour-model, so that each point within an image is mapped on to a red, green and blue component. These components are encapsulated in the provided class picture.Color which provides get and set methods for each primary colour. Each component has 256 possible intensities, ranging from 0 to 255. The final colour of each pixel depends on the intensities of the primary colour components. The coordinates (x,y) always mean “along and down”, counting from (0,0) at the top left.
   - You will be given three helper classes to use during this lab: picture.Color,picture.Picture and picture.Utils.
   
-**picture.Color**
+**<subpicture.Color>**
 
 The class picture.Color provides the following methods for inspecting and setting the colour components of a pixel:
 
