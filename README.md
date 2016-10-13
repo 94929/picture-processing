@@ -103,7 +103,7 @@ If you are using an IDE such as Eclipse, you can run your program in the usual w
 
 Eclipse will automatically compile your code for you, and place the resulting class files in the directory bin (which it will also create for you). If you are in the picture processing directory, you can invoke your program from the command line with the following command:
 
-* % java -ea -cp bin picture.Main**
+* % java -ea -cp bin picture.Main
 
 Here, the -cp bin flag tells Java to look for .class files in the bin directory (**cp** is short for *class path*).
 
@@ -127,19 +127,19 @@ We have provided you with a static helper method, runMain, which will execute yo
 
 For example, the first test, invertBlack(), calls:
 
-'assertEquals(Utils.loadPicture("images/white64x64.png"), runMain(tmpFolder, "invert", "images/black64x64.png"));'
+* assertEquals(Utils.loadPicture("images/white64x64.png"), runMain(tmpFolder, "invert", "images/black64x64.png"));
   
 This says that the image produced in /tmp/blah/out.png when main is invoked with the arguments invert images/black64x64.png/tmp/blah/out.png should be the same as images/white64x64.png.
 
 On the command-line, you can compile the test suite with:
 
-'javac -g -d bin -cp /usr/share/java/junit4.jar -sourcepath src:testsuite testsuite/testsuite/TestSuite.java'
+* javac -g -d bin -cp /usr/share/java/junit4.jar -sourcepath src:testsuite testsuite/testsuite/TestSuite.java
 
 which instructs javac to place the compiled .class files in the bin directory, to use the JUnit 4 jar file, and to look for source files in both the src and testsuite directories.
 
 And then run it with:
 
-'java -cp /usr/share/java/junit4.jar:bin org.junit.runner.JUnitCore testsuite.TestSuite'
+* java -cp /usr/share/java/junit4.jar:bin org.junit.runner.JUnitCore testsuite.TestSuite
 
 Alternatively, you can compile and run the test-suite very easily, with a more flexible visu- alisation of the errors, using an IDE.
 
