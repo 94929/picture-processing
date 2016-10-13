@@ -1,20 +1,20 @@
 # PictureProcessing
 
-- **Aims**
+**Aims**
   - To practice writing simple programs and designing classes in Java.
   - To introduce the use of *packages* in Java.
   - To introduce the unit testing framework *JUnit*.
 
-- **Problem**
+**Problem**
   - You will be given a skeleton project with several helper classes, a partially completed test suite and several test images.
   - Your task is to implement several picture transformations, and provide a command line program that allows a user to to transform a specified image, saving the resulting image to a file.
   - You will also need to complete a partially given test suite by adding extra test cases for the parts of your program that it does not currently test.
 
-- **Colours and Pictures**
+**Colours and Pictures**
   - An image can be represented in memory as a bounded two-dimensional array of pixel values. A *colour-model* is used to translate a pixel-value to colour components. In this lab, pixel-values will be interpreted using the **RGB** colour-model, so that each point within an image is mapped on to a red, green and blue component. These components are encapsulated in the provided class **picture.Color** which provides get and set methods for each primary colour. Each component has **256** possible intensities, ranging from 0 to 255. The final colour of each pixel depends on the intensities of the primary colour components. The coordinates *(x,y)* always mean “along and down”, counting from *(0,0)* at the *top left*.
   - You will be given three helper classes to use during this lab: **picture.Color,picture.Picture** and **picture.Utils**.
   
-**picture.Color**
+**picture.Color** 
 
 The class **picture.Color** provides the following methods for inspecting and setting the colour components of a pixel:
 
@@ -82,12 +82,12 @@ You should implement the **picture.Main** class to implement the transformations
 
 The format of these commands are:
 
-invert *input output*
-grayscale *input output*
-rotate [90|180|270] *input output*
-flip [H|V] *input output*
-blend *input_1 input_2 input_... input_n output*
-blur *input output*
+* invert *input output*
+* grayscale *input output*
+* rotate [90|180|270] *input output*
+* flip [H|V] *input output*
+* blend *input_1 input_2 input_... input_n output*
+* blur *input output*
 
 So, for example, if the args array contained:
 
@@ -98,6 +98,7 @@ You are free to alter picture.Main, and add any additional packages or classes y
 A suggested design is to create a new class, picture.Process. This will accept the in- put picture.Picture as a constructor argument, and have instance methods that perform the transforms on the contained picture. For example, the instance method public void invert() will invert the image, and public void flipHorizontal() will flip it horizontally. picture.Main will focus on parsing the input arguments, and picture.Process will focus on actually performing the transformation.
 
 **Running the Program**
+
 
 **Suggested Extensions**
 
